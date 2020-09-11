@@ -1,0 +1,31 @@
+.table{
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+.tr{
+    display: table-row;
+}
+.td{
+    display: table-cell;
+    text-align: center;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+
+.td a{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.arrowUp {
+    display: none;
+}
+
+.arrowDown {
+    display: none;
+}
+
+.active {
+    display: inline;
+}
