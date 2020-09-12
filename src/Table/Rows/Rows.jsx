@@ -3,8 +3,8 @@ import styles from '../Table.module.css'
 
 
 export default function Rows(props) {
-    const { persons, tableHeader } = props;
-    const partOfPersons = persons.slice(0, 10);
+    const { persons, tableHeader, pagesIntervals, page } = props;
+    const partOfPersons = persons.slice(pagesIntervals[page-1][0], pagesIntervals[page-1][1]+1);
 
     return (
         <>

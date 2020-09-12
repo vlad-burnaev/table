@@ -6,16 +6,22 @@ import Filter from "./Filter/Filter";
 import Pagination from "./Pagination/Pagination";
 
 export default function Table(props) {
-    const {tableHeader, persons, sortTable, filterTable, sortTo, sortField, numberOfPages} = props;
+    const {tableHeader, persons, sortTable, filterTable, sortTo, sortField, numberOfPages, pagesIntervals, page, setPage} = props;
 
     return (
         <>
             <Filter filterTable={filterTable}/>
             <div className={styles.table}>
-                <Head tableHeader={tableHeader} sortTable={sortTable} sortTo={sortTo} sortField={sortField}/>
-                <Rows tableHeader={tableHeader} persons={persons}/>
+                <Head tableHeader={tableHeader}
+                      sortTable={sortTable}
+                      sortTo={sortTo}
+                      sortField={sortField}/>
+                <Rows tableHeader={tableHeader}
+                      persons={persons}
+                      pagesIntervals={pagesIntervals}
+                      page={page}/>
             </div>
-            <Pagination numberOfPages={numberOfPages}/>
+            <Pagination numberOfPages={numberOfPages} setPage={setPage}/>
         </>
     )
 }
