@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+button {
+  cursor: pointer;
+}
+
 .app-wrapper {
   padding-top: 2rem;
   margin: 0 auto;
