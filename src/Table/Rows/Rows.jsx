@@ -9,7 +9,7 @@ export default function Rows(props) {
         <>
             {persons.map(person => {
                 return (
-                    <div className={ styles.tr } key={person.id}>
+                    <div className={ styles.tr } key={person.id + person.phone}>
                         {tableHeader.map((el, index) => <div className={ styles.td } key={index}>{person[el]}</div>)}
                     </div>
                 )

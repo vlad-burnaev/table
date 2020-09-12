@@ -9,8 +9,10 @@ export default function Filter(props) {
             <div>Поиск по значению</div>
             <input value={value} onChange={event => setValue(event.target.value)}/>
             <button type='button' onClick={() => {
-                filterTable(value);
-                setValue('');
+                if (value !== '') {
+                    filterTable(value);
+                } else filterTable('');
+
             } }>Найти</button>
         </div>
     )

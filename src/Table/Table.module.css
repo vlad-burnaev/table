@@ -13,19 +13,14 @@
     vertical-align: middle;
 }
 
-.td a{
+.td span{
     font-weight: bold;
     cursor: pointer;
 }
 
-.arrowUp {
-    display: none;
-}
-
-.arrowDown {
-    display: none;
-}
-
-.active {
-    display: inline;
-}
+/*.arrowUp {*/
+/*    display: none;*/
+/*}*/
+/*.arrowDown {*/
+/*    display: none;*/
+/*}*/

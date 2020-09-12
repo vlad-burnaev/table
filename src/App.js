@@ -1,38 +1,52 @@
 import React, {useEffect, useState} from 'react';
 import Table from "./Table/Table";
+import _ from 'lodash';
 
 function App() {
     const smallRequestURL = 'http://www.filltext.com/?rows=32&id=%7Bnumber%7C1000%7D&firstName=%7BfirstName%7D&lastName=%7BlastName%7D&email=%7Bemail%7D&phone=%7Bphone%7C(xxx)xxx-xx-xx%7D&address=%7BaddressObject%7D&description=%7Blorem%7C32%7D';
     const tableHeader = ['id', 'firstName', 'lastName', 'email', 'phone'];
     const [persons, setPersons] = useState([]);
+    const [prevPersons, setPrevPersons] = useState([]);
+    const [sortTo, setSortTo] = useState('asc');
+    const [sortField, setSortField] = useState('id');
+
 
     useEffect(() => {
         fetch(smallRequestURL)
             .then(response => response.json())
             .then(persons => {
-                setPersons(persons)
+                setPersons(_.orderBy(persons, 'id', 'asc'))
             })
     }, [])
 
-    function sortTable(el) {
-        const sortedPersons = persons.concat();
-        sortedPersons.sort((prev, next) => {
-            if ( prev[el] < next[el] ) return -1;
-            if ( prev[el] < next[el] ) return 1;
-        });
-        setPersons(sortedPersons);
+    function sortTable(sortField) {
+        const copyPersons = persons.concat();
+        const sortType = sortTo === 'asc' ? 'desc' : 'asc';
+        const sortPersons = _.orderBy(copyPersons, sortField, sortType);
+        setSortField(sortField);
+        setPersons(sortPersons);
+        setSortTo(sortType);
     }
 
     function filterTable(value) {
-        console.log(value)
-        return value;
+        const copyPersons = persons.concat();
+        setPrevPersons(copyPersons);
+        if (value !== '') {
+            const filterPersons = _.filter(copyPersons, function (o) {
+                if ( o.firstName.includes(value) || o.lastName.includes(value) || o.email.includes(value) || o.phone.includes(value)) {
+                    return true;
+                } else return false;
+            })
+            setPersons(filterPersons);
+        } else {
+            setPersons(prevPersons);
+        };
+
     }
-
-
     return (
         <div className="app-wrapper">
             <h1>Тестовое задание</h1>
-            <Table persons={persons} tableHeader={tableHeader} sortTable={sortTable} filterTable={filterTable}/>
+            <Table persons={persons} tableHeader={tableHeader} sortTable={sortTable} filterTable={filterTable} sortTo={sortTo} sortField={sortField}/>
         </div>
     );
 }
