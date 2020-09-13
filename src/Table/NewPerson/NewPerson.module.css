@@ -1,0 +1,21 @@
+.newPerson {
+    margin-bottom: 20px;
+}
+
+.addBtn {
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    display: flex;
+    text-align: center;
+}
+
+.wrapper div {
+    font-weight: bold;
+    width: 20%;
+}
+
+.wrapper input {
+    width: 20%;
+}

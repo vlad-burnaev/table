@@ -6,14 +6,14 @@ export default function Filter(props) {
     const [value, setValue] = useState('');
     return (
         <div className={styles.filter}>
-            <div>Поиск по значению</div>
+            <div>Search by value</div>
             <input value={value} onChange={event => setValue(event.target.value)}/>
             <button type='button' onClick={() => {
                 if (value.trim() !== '') {
                     filterTable(value);
                 } else filterTable('');
 
-            } }>Найти</button>
+            } }>Search</button>
         </div>
     )
 }

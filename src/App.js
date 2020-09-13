@@ -9,9 +9,11 @@ function App() {
     const [showLarge, setShowLarge] = useState(false);
     return (
         <div className="app-wrapper">
-            <h1>Тестовое задание</h1>
-            <button onClick={() => {setShowSmall(true);setShowLarge(false);}}>Small dataset</button>
-            <button onClick={() => {setShowLarge(true);setShowSmall(false);}}>Large dataset</button>
+            <h1>Test task</h1>
+            <div className='dataset-size-btns'>
+                <button onClick={() => {setShowSmall(true);setShowLarge(false);}}>Small dataset</button>
+                <button onClick={() => {setShowLarge(true);setShowSmall(false);}}>Large dataset</button>
+            </div>
             {showSmall && <Table requestURL={smallRequestURL}/>}
             {showLarge && <Table requestURL={largeRequestURL}/>}
         </div>

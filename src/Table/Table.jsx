@@ -5,14 +5,19 @@ import Head from "./Head/Head";
 import Filter from "./Filter/Filter";
 import Pagination from "./Pagination/Pagination";
 import _ from "lodash";
+import Info from "./Info/Info";
+import NewPerson from "./NewPerson/NewPerson";
+import Loader from "./Loader/Loader";
 
 export default function Table(props) {
     const {requestURL} = props;
+
     useEffect(() => {
         fetch(requestURL)
             .then(response => response.json())
             .then(persons => {
-                setPersons(_.orderBy(persons, 'id', 'asc'))
+                setPersons(_.orderBy(persons, 'id', 'asc'));
+                setLoading(false);
             })
     }, []);
 
@@ -21,6 +26,9 @@ export default function Table(props) {
     const [sortTo, setSortTo] = useState('asc');
     const [sortField, setSortField] = useState('id');
     const [page, setPage] = useState(1);
+    const [infoVisibility, setInfoVisibility] = useState(false);
+    const [selectedPersonId, setSelectedPersonId] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     const tableHeader = ['id', 'firstName', 'lastName', 'email', 'phone'];
     const rowsPerPage = 50;
@@ -65,6 +73,7 @@ export default function Table(props) {
 
     return (
         <>
+            <NewPerson setPersons={setPersons} persons={persons}/>
             <Filter filterTable={filterTable}/>
             <div className={styles.table}>
                 <Head tableHeader={tableHeader}
@@ -74,8 +83,12 @@ export default function Table(props) {
                 <Rows tableHeader={tableHeader}
                       persons={persons}
                       pagesIntervals={pagesIntervals}
-                      page={page}/>
+                      page={page}
+                      setInfoVisibility={setInfoVisibility}
+                      setSelectedPersonId={setSelectedPersonId}/>
             </div>
+            { loading ? <Loader /> : null}
+            {infoVisibility && <Info selectedPersonId={selectedPersonId} persons={persons}/>}
             <Pagination numberOfPages={numberOfPages} setPage={setPage}/>
         </>
     )

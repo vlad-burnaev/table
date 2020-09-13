@@ -6,6 +6,7 @@
 }
 .tr{
     display: table-row;
+    cursor: pointer;
 }
 .td{
     display: table-cell;
