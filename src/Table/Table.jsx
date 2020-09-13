@@ -57,17 +57,14 @@ export default function Table(props) {
     function filterTable(value) {
         const copyPersons = persons.concat();
         setPrevPersons(copyPersons);
-        if (value !== '') {
+        if (value !== 'goToPrev') {
             const filterPersons = _.filter(copyPersons, function (o) {
                 if (o.firstName.includes(value) || o.lastName.includes(value) || o.email.includes(value) || o.phone.includes(value)) {
                     return true;
                 } else return false;
             })
             setPersons(filterPersons);
-        } else {
-            setPersons(prevPersons);
-        }
-        ;
+        } else if (prevPersons.length !== 0) setPersons(prevPersons);
 
     }
 

@@ -2,8 +2,12 @@
     margin-bottom: 20px;
 }
 
-.addBtn {
+.addBtnUp {
     margin-bottom: 10px;
+}
+
+.addBtnDown {
+    margin-top: 10px;
 }
 
 .wrapper {

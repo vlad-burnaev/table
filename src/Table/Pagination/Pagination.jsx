@@ -10,7 +10,7 @@ export default function Pagination(props) {
     }
     return (
         <div className={style.wrapper}>
-            {numberOfPages > 1 && pages.map(page => <button className={style.btn}
+            {numberOfPages > 1 && pages.map(page => <button className={style.btn + ' btn btn-light'}
                                                             key={page}
                                                             onClick={() => setPage(page)}>{page}</button>)}
         </div>

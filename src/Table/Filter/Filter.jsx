@@ -8,10 +8,10 @@ export default function Filter(props) {
         <div className={styles.filter}>
             <div>Search by value</div>
             <input value={value} onChange={event => setValue(event.target.value)}/>
-            <button type='button' onClick={() => {
+            <button className='btn btn-secondary' type='button' onClick={() => {
                 if (value.trim() !== '') {
                     filterTable(value);
-                } else filterTable('');
+                } else filterTable('goToPrev');
 
             } }>Search</button>
         </div>

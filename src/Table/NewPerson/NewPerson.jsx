@@ -19,7 +19,7 @@ export default function NewPerson(props) {
     }
     return (
         <div className={styles.newPerson}>
-            {addBtnVisibility === true && <button className={styles.addBtn} onClick={() => {
+            {addBtnVisibility === true && <button className={styles.addBtnUp + ' btn btn-secondary'} onClick={() => {
                 setFormVisibility(true);
                 setAddBtnVisibility(false);
             }}>Add person</button>}
@@ -38,7 +38,7 @@ export default function NewPerson(props) {
                     <input type="email" value={email} onChange={e => setEmail(e.target.value)}/>
                     <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}/>
                 </div>
-                {formIsRequired && <button onClick={() => {
+                {formIsRequired && <button className={styles.addBtnDown + ' btn btn-secondary'} onClick={() => {
                     copyPersons.unshift(newPersonObj);
                     setPersons(copyPersons);
                     setId('');
