@@ -1,3 +1,5 @@
+### GitHub pages: https://vlad-burnaev.github.io/table/
+
 # Тестовое задание
 
 По задаче - [Task.md](Task.md) создан проект на основе Create React App.      
