@@ -17,8 +17,8 @@ export default function Table(props) {
             .then(response => response.json())
             .then(persons => {
                 setPersons(_.orderBy(persons, 'id', 'asc'));
-                setLoading(false);
-            })
+                setLoading(false)})
+            .catch(e => console.error(e))
     }, []);
 
     const [persons, setPersons] = useState([]);
@@ -38,14 +38,15 @@ export default function Table(props) {
     function takeIntervals(nRows, nPages) {
         const intervals = [];
         let start = 0;
-        let end = nRows-1;
-        for (let i=0; i<=nPages; i++) {
-            intervals[i]=[start, end];
-            start+=nRows;
-            end+=nRows;
+        let end = nRows - 1;
+        for (let i = 0; i <= nPages; i++) {
+            intervals[i] = [start, end];
+            start += nRows;
+            end += nRows;
         }
         return intervals;
     }
+
     function sortTable(sortField) {
         const copyPersons = persons.concat();
         const sortType = sortTo === 'asc' ? 'desc' : 'asc';
@@ -54,18 +55,16 @@ export default function Table(props) {
         setPersons(sortPersons);
         setSortTo(sortType);
     }
+
     function filterTable(value) {
         const copyPersons = persons.concat();
         setPrevPersons(copyPersons);
         if (value !== 'goToPrev') {
             const filterPersons = _.filter(copyPersons, function (o) {
-                if (o.firstName.includes(value) || o.lastName.includes(value) || o.email.includes(value) || o.phone.includes(value)) {
-                    return true;
-                } else return false;
+                return !!(o.firstName.includes(value) || o.lastName.includes(value) || o.email.includes(value) || o.phone.includes(value));
             })
             setPersons(filterPersons);
         } else if (prevPersons.length !== 0) setPersons(prevPersons);
-
     }
 
     return (
@@ -84,7 +83,7 @@ export default function Table(props) {
                       setInfoVisibility={setInfoVisibility}
                       setSelectedPersonId={setSelectedPersonId}/>
             </div>
-            { loading ? <Loader /> : null}
+            {loading ? <Loader/> : null}
             {infoVisibility && <Info selectedPersonId={selectedPersonId} persons={persons}/>}
             <Pagination numberOfPages={numberOfPages} setPage={setPage}/>
         </>

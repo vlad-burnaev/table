@@ -8,6 +8,7 @@ export default function Pagination(props) {
     for (let i = 0; i < numberOfPages; i++) {
         pages[i] = i + 1;
     }
+
     return (
         <div className={style.wrapper}>
             {numberOfPages > 1 && pages.map(page => <button className={style.btn + ' btn btn-light'}
